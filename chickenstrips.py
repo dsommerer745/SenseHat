@@ -1,8 +1,14 @@
 
 from sense_hat import SenseHat
 from time import sleep, strftime
+from time import strftime
 
 sense = SenseHat()
+
+event = sense.stick.wait_for_event()
+if event.action == "pressed" and event.direction == "middle":
+  day = int(strftime("%d"))
+  month = strftime("%B")
 
 # ------------------------------------------------
 # DATA
@@ -29,9 +35,9 @@ with open("pictures.txt", "r") as f:
 door = all_pics[0]
 # ------------------------------------------------
 # FUNCTIONS
-# ------------------------------------------------
-# Display a given picture string on the sense HAT
-# ------------------------------------------------
+# ----------------------------------------------
+
+
 def display_pic(pic_string):
 
   # Get rid of newline and split the line into a list  
@@ -49,10 +55,25 @@ def display_pic(pic_string):
 
 
 # ------------------------------------------------
-from time import strftime
-day = strftime("%d")
-month = strftime("%B")
-whole_date = strftime("%
 # ------------------------------------------------
 sense.clear()
 display_pic(door)
+sense.show_message( str(month) )
+
+if month == "December" and day < 15:
+    sense.show_message(str(day))    # Convert day to a string
+    sense.show_message("Almost Christmas!!")
+    display_pic(all_pics[day])
+    sleep(5)
+
+if month == "December" and day < 25:
+    sense.show_message(str(day))
+    sense.show_message("SOOOO CLOSE!")
+    display_pic(all_pics[day])
+    sleep(5)
+  
+if month == "December" and day == 25:
+  sense.show_message("IT'S CHRISTMAS")
+  display_pic(all_pics[day])
+  sleep(5)
+
