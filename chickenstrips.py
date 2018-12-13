@@ -1,3 +1,4 @@
+
 from sense_hat import SenseHat
 from time import sleep, strftime
 
@@ -19,24 +20,21 @@ colours = {
   'v' : [42, 26, 62],
   'n' : [135, 80, 22],
   'w' : [255, 255, 255],
-  'e' : [0, 0, 0] 
-
+  'e' : [0, 0, 0]  # e stands for empty/black
 
 }
 
 with open("pictures.txt", "r") as f:
     all_pics = f.readlines()
-    door = all_pics[1]
-    display_pic(door)
-
+door = all_pics[0]
 # ------------------------------------------------
 # FUNCTIONS
 # ------------------------------------------------
-
+# Display a given picture string on the sense HAT
 # ------------------------------------------------
 def display_pic(pic_string):
 
-  # Get rid of newline and split the line into a list
+  # Get rid of newline and split the line into a list  
   pic_string = pic_string.strip("\n")
   pic_string = pic_string.split(",")
 
@@ -45,20 +43,16 @@ def display_pic(pic_string):
   for letter in pic_string:
       pic_list.append(colours[letter])
 
-  # Display the pixel colours from the from sense_hat import SenseHat
-from time import sleep, strftime
+  # Display the pixel colours from the file
+  sense.set_pixels(pic_list)
 
-sense = SenseHat()
-
-# ------------------------------------------------
-# DATA
-# ------------------------------------------------
 
 
 # ------------------------------------------------
-# MAIN PROGRAM
+from time import strftime
+day = strftime("%d")
+month = strftime("%B")
+whole_date = strftime("%
 # ------------------------------------------------
 sense.clear()
-display_pic(all_pics[7])
-
-
+display_pic(door)
