@@ -3,7 +3,9 @@ from sense_hat import SenseHat
 from time import sleep, strftime
 from time import strftime
 
+
 sense = SenseHat()
+
 
 event = sense.stick.wait_for_event()
 if event.action == "pressed" and event.direction == "middle":
@@ -65,8 +67,8 @@ if month == "December" and day < 15:
     sense.show_message("Almost Christmas!!")
     display_pic(all_pics[day])
     sleep(5)
-
-if month == "December" and day < 25:
+  
+else:
     sense.show_message(str(day))
     sense.show_message("SOOOO CLOSE!")
     display_pic(all_pics[day])
