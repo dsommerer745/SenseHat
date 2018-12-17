@@ -5,6 +5,8 @@ from time import strftime
 
 
 sense = SenseHat()
+red = (255, 0, 0)
+green = (0, 255, 0)
 
 
 event = sense.stick.wait_for_event()
@@ -64,18 +66,18 @@ sense.show_message( str(month) )
 
 if month == "December" and day < 15:
     sense.show_message(str(day))    # Convert day to a string
-    sense.show_message("Almost Christmas!!")
+    sense.show_message("Almost Christmas!!", text_colour = red)
     display_pic(all_pics[day])
     sleep(5)
   
 else:
     sense.show_message(str(day))
-    sense.show_message("SOOOO CLOSE!")
+    sense.show_message("SOOO CLOSE TO CHRISTMAS!!", text_colour = green)
     display_pic(all_pics[day])
     sleep(5)
   
 if month == "December" and day == 25:
-  sense.show_message("IT'S CHRISTMAS")
+  sense.show_message("IT'S CHRISTMAS", text_colour = red)
   display_pic(all_pics[day])
   sleep(5)
 
